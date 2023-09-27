@@ -43,3 +43,21 @@ El operador spread (...estadoprevio) se utiliza para clonar todo el estado anter
 cuando se actualiza el estado en Filters utilizando onChangeFilters, se esta modificando la propiedad minPrice en el estado de App directamente.
 
 ES IMPORTANTE QUE SE LLAMEN IGUALES PORQUE SINO EN APP NO SE RECONOCE EL CAMBIO DE ESTE FILTRO DE PRECIO, NO ENTRA EN EL SET
+
+//.. PASO FINAL../ REORGANIZACION DE LA LOGICA
+
+REORGANIZAR LA LOGICA:
+
+A) CREAMOS UN CUSTOM HOOKS useFilters(), DONDE, vamos a guardar toda la logica y la defincion de los filtros en otra funcion, por fuera de app.
+
+QUE TENEMOS EN APP:
+1. definicion de los filtros -->  const [filters, setfilters] = useState(precio minimo y categoria)
+2. LA LOGICA, que realiza el filtro --> filterProducts();
+
+b) GUARDAMOS ESTO DENTRO DEL CUSTOMHOOK, Y PARA PODER USARLO EN APP SON 2 PASOS.
+1) RETORNAR LO QUE NECESITO:
+filterProducts: los productos que son filtrados por los filtros.
+setfilters: el setFilters que lo pasamos como props al componente filters y hace una copia y actualizacion del estado filters.
+2) EXTRACCION EN APP:
+una vez que lo retorna lo extraigo en app
+  const { filterProducts, setfilters } = useFilters();
