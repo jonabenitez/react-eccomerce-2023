@@ -1,0 +1,45 @@
+UNA VEZ QUE CREAMOS EL COMPONENTE FILTERS Y EL HEADER QUE ES DONDE SE VAN MOSTRAR, lo que necesito es que estos funcionen.
+
+
+ESTOS VAN A FUNCIONAR MODIFICANDO EL setFilters, es decir actualizando el valor de los filtros, para eso es necesario pasarlos del componente APP a Header y de Header a filters.
+por medio de las PROPS.
+
+
+COMO FUNCIONA:
+el ChangeFilters que pasamos como props es igual a {setFilters}.
+
+        APP           header        filters
+    setFilters = changeFilters = onchangeFilters = setFilters -->    category: "all",
+                                                                      minPrice: 0,
+
+
+                                                                minprice = e.target.value
+
+
+ESTE ES EL CAMINO DEL setFilters HASTA EL componente filters.
+
+AHORA NECESITAMOS QUE ESTO FUNCIONE DENTRO DEL FILTRO DE PRECIOS. es decir del Handle, del manejador de precios.
+
+PARA ESTO ES NECESARIO:
+
+1. QUE SE GUARDE UNA COPIA DEL ESTADO ANTERIOR, PARA QUE LOS FILTROS QUE NO SE MODIFICAN, QUEDEN GUARDADOS.
+
+El operador spread (...estadoprevio) se utiliza para clonar todo el estado anterior, lo que significa que se copian todas las propiedades del estado anterior tal como estaban. Luego, se sobrescribe la propiedad "minprice" con el nuevo valor, que se toma del evento e.target.value.
+
+
+
+
+////// EXPLICACION DEL FLUJO DE LA INFORMACION ///
+
+1. Cuando el usuario modifica el precio mínimo a través del control deslizante de precio en el componente Filters, se actualiza el estado local minprice en Filters con el nuevo valor.
+
+2. Luego, se llama a la función onChangeFilters en el componente Filters, que es una función que se pasa como prop al componente Filters desde el componente App. Esta función toma el estado previo (en este caso, el estado filters en el componente App) y realiza una actualización específica en ese estado.
+
+3. Dentro de la función onChangeFilters, se crea una copia del estado previo  (...estadoprevio) y se actualiza la propiedad minPrice de ese estado copiado con el nuevo valor seleccionado por el usuario (que se encuentra en minprice).
+
+4. Al actualizar el estado filters en el componente App con el nuevo valor de minPrice, se desencadena una actualización en el componente App, y cualquier componente que utilice este estado se volverá a renderizar con la nueva información.
+
+
+cuando se actualiza el estado en Filters utilizando onChangeFilters, se esta modificando la propiedad minPrice en el estado de App directamente.
+
+ES IMPORTANTE QUE SE LLAMEN IGUALES PORQUE SINO EN APP NO SE RECONOCE EL CAMBIO DE ESTE FILTRO DE PRECIO, NO ENTRA EN EL SET

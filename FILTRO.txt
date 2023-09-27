@@ -1,0 +1,93 @@
+// CREACION DE FILTRO
+
+primero: el fitro lo creamos a partir de un estado, es decir, useState.
+este va a contener en este caso a 2 filtros, que podrian ser mas, entonces, como contiene 2 filtros se va  definir en principio como un OBJETO.
+
+para hacerlo reutilizable, usamos esto con valores de all y 0, ya que asi modificando, por ej el precio min a 50, van a aparecer todos lo que tengan minimo 50.
+
+
+  const [filters, setFilters] = useState({
+    category: "all",
+    minprice: 0,
+  });
+
+esto es igual const category = 'all'
+              const minprice = 0
+
+una vez que definimos los filtros que queremos usar, vamos a crear el metodo que va a filtrar, con una funcion flecha que ingresa como parametro los productos del json y me retorna los productos filtrados, dentro del filter hacemos otra funcion flecha.    
+
+products.filter((product) => {
+de products traeme los productos que cumplan estan condiciones
+
+    return (
+        product.price >= minprice && (y)
+        product.category === filters.category ||
+        category === 'all'
+    )
+})
+
+
+const filteredProducts (products) => {return products.filter ()}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  const [filters, setFilters] = useState({
+    category: "all",
+    minprice: 0,
+  });
+
+  //CREAMOS UN METODO FILTERS - QUE NOS VA A FILTAR SEGUN ESTOS FILTROS
+  // esta función filtra los productos en función de la categoría seleccionada y un precio mínimo. Los productos que cumplan ambos criterios se incluyen en la lista de productos filtrados.
+
+  const filterProducts = (products) => {
+    return products.filter((product) => {
+      return (
+        product.price >= filters.minprice &&
+        //devcuelve los productos que el precio sea mayor al del filtro "0"
+        (filters.category === "all" ||
+          //y ademas Si la categoría seleccionada es "all", entonces no se aplica ningún filtro por categoría, y todos los productos se consideran válidos.
+          product.category === filters.category)
+        // o si ... se selecciona una categoría específica (distinta de "all"), entonces solo se incluyen los productos que pertenecen a esa categoría.
+      );
+    });
+  };
+
+const filteredProducts = filterProducts(products);
+
+
+
+  const [filters, setFilters] = useState({
+    minPrice: 0,
+    category: "all",
+  });
+
+  const filterProduct = (products) => {
+    return products.filter((product) => {
+      return (
+        product.price >= filters.minPrice &&
+        (product.category === filters.category || filters.category === "all")
+      );
+    });
+  };
+
+  const fiteredProducts = filterProduct(products);

@@ -1,0 +1,83 @@
+PARTE 1 - MOSTRAR PRODUCT EN LA INTERFAZ
+
+MATRIZ DE COMO MOSTRAR EN LA INTEFAZ
+
+    <main> 
+          <ul>
+             {PROPS.MAP} =>
+                    <li key={product.id}>
+                           <div>{product.title}</div>
+                           <img src={product.thumbnail} alt={product.title} />
+                    </li>
+           </ul>
+
+PROP TYPES - BIBLIOTECA  VALIDACION
+¿Qué es PropTypes en React?
+PropTypes es una biblioteca en React que se utiliza para especificar el tipo de datos esperado para las props que se pasan a los componentes. Es una forma de documentar y validar las props de un componente para asegurarse de que se utilicen correctamente y para proporcionar información útil a otros desarrolladores que trabajen con tus componentes.
+
+¿Cómo funciona la validación de props con PropTypes?
+Products.jsx: se realiza la validación de props de la siguiente manera:
+
+Importación de PropTypes: Primero, importamos PropTypes desde la biblioteca prop-types.
+
+Definición del componente Products: Dentro del componente Products, se espera recibir un objeto de props como argumento. En este caso, estamos esperando una única prop llamada products, que debería ser un array de objetos.
+
+Definición de PropTypes: Justo después de la definición del componente Products, utilizamos Products.propTypes para definir la validación de las props. En este caso, especificamos que products debe ser un array de objetos utilizando PropTypes.arrayOf(). Dentro de PropTypes.arrayOf(), utilizamos PropTypes.shape() para definir la estructura esperada de cada objeto en el array.
+
+Validación de campos individuales: Dentro de PropTypes.shape(), especificamos las propiedades individuales que se esperan en cada objeto (en este caso, id, thumbnail, y title). También usamos PropTypes.number.isRequired para decir que id debe ser un número y es requerido (obligatorio), y PropTypes.string.isRequired para thumbnail y title, indicando que deben ser cadenas de texto y también son requeridas.
+
+isRequired: Usamos .isRequired al final de las validaciones para indicar que la prop products en su totalidad es requerida.
+
+¿Por qué es importante usar PropTypes?
+El uso de PropTypes es importante por varias razones:
+
+Ayuda a documentar el uso correcto de tus componentes, lo que facilita que otros desarrolladores comprendan cómo deben usarlos.
+Proporciona una capa de seguridad al verificar que las props se utilicen correctamente. Si alguien intenta usar el componente sin proporcionar las props correctas, se generarán advertencias en la consola de desarrollo.
+Facilita el mantenimiento del código al identificar posibles errores o problemas en el uso de props.
+Hace que tu código sea más robusto y resistente a errores, especialmente en proyectos grandes y colaborativos.
+En resumen, PropTypes es una herramienta útil para mejorar la calidad y la documentación de tus componentes React y para evitar errores comunes relacionados con props.
+
+
+
+
+//quiero un componente que me muestre en pantalla los datos de la matriz de datos del json.
+import propTypes from "prop-types";
+
+function Products({ products }) {
+  return (
+    <main>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <img src={product.thumbnail} alt="" />
+          </li>
+
+        ))}
+      </ul>
+    </main>
+  );
+}
+
+export default Products;
+
+//// VALIDACION ////
+//1) ME TRAIGO LOS PRODUCT DE LA MATRIZ DE DATOS, DEL JSON, me va a dar un error, porque necesigto la validacion.
+
+//b) importo las props para y hago la VALIDACION:
+//1. la la lista de productos tiene que ser igual a una matriz de datos.
+// de este se espera que tenga otros objeto como propiedades   PropTypes.shape ({})
+//2. veo que voy a necesitar:
+// a. un titulo --> string
+// b. una img   --> string
+// c. un id     --> number
+
+Products.propTypes = {
+  products: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.number.isRequired,
+      thumbnail: propTypes.string.isRequired, //la imagen debe ser un string
+      title: propTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
