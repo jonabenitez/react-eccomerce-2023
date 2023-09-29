@@ -33,13 +33,51 @@ si ahora vemos como tenemos la aplicacion, el componente app es el que orquesta 
 3) CONSUMIR EL CONTEXTO:  desde filters consumir este contexto
 
 
-1_ creacion del contexto
-creamos el archivo filters.js / importamos el create context y lo creamos vacio.
+1) creacion del contexto
+creamos el archivo Filters.jsx / importamos el create context y lo creamos vacio.
 
 export const FitersContext = createContext()
 
+2) creacion del PROVIDER (funcion).
+
+export function FiltersProvider({ children }) {
+  <FiltersContext.Provider
+    value={{
+      category: "all",
+      minPrice: 0,
+    }}
+  >
+    {children}
+  </FiltersContext.Provider>;
+
+// esta es la info que necesita nuestra app para funcionar.
+// estamos diciendo: que el FiltersContext (el contexto) acceda al .Provider  que tiene como valor category y value. (POR AHORA)
+
+2.b)_ Que definimos como children? APP
+en el index.jsx envolvemos app con el FiltersContext.Provider
+
+                <FiltersProvider>
+                <App />
+                </FiltersProvider>
+
+3) CONSUMIR EL CONTEXTO
+
+dentro de APP ---> DENTRO DEL CustomHook.
+reemplazamos la definicion de los Filters para consumirla directamente desde lo que definimos en useContext.
 
 
+  const [filters, setfilters] = useState({
+    category: "all",
+    minPrice: "0",                          ============   REMPLAZO POR  ===>  useContext(FiltersContext)
+  }); 
 
 
+ **  PERO ACA SURGE UN PROBLEMA **
+ porque hasta ahora no funciona porque no tenemos el setFilters en nuestro contexto,esto lo vuelve estatico, no tenemos el estado, para eso actualizamos el Provider.
+
+ para esto devemos redefinir el Provedor del contexto agregando un ESTADO.
+
+ NUEVA DEFINICION DEL PROVIDER
+
+ export function
  

@@ -1,19 +1,26 @@
 //import Products from "./Components/Products";
 import { products as InicialProducts } from "./Mooks/products.json";
 import Products from "./Components/Products";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import {FiltersContext} from './context/FiltersContext'
 
 //CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS.
 function useFilters() {
   //defino ambos filtros como OBJETO.
   //->categoria, -> precio ===>  filters.
-  //-> setProducts ===> manejador de los filtros.
-  const [filters, setfilters] = useState({
-    category: "all",
-    minPrice: "0",
-  });
+  //-> setProducts ===> manejador de; estado los filtros.
+  
+  // const [filters, setfilters] = useState({
+  //   category: "all",
+  //   minPrice: "0",
+  // });
+
+  //REEMPLAZAMOS LA DEFINICION DEL OBJETO DE LOS FILTROS POR LA CREADA EN EL CONTEXTO
+  const {filters,setfilters} = useContext(FiltersContext)
+
+
 
   //funcion logica de los filtros.
   // productos filtrados ===> products.
@@ -30,7 +37,7 @@ function useFilters() {
 }
 
 function App() {
-  //extraccion de los filtros. ({llaves} xq son funciones)
+  //extraccion de los filtros. ({llaves} xq son varios y lo extraigo como objetos)
   const { filterProducts, setfilters, filters } = useFilters();
 
   //extraccion de los productos. ([corchetes] porque es una matriz de datos)

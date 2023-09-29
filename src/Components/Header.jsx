@@ -16,5 +16,5 @@ export default Header
 
 
 Header.propTypes = {
-  changeFilters: PropTypes.func.isRequired
+  changeFilters: PropTypes.func
 }

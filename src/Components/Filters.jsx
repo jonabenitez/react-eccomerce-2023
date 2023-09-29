@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import "./filters.css";
 import { useState, useId } from "react";
-import PropTypes from "prop-types";
 
 export function Filters({ onChangeFilters }) {
   // ID UNICOS:
@@ -74,6 +74,3 @@ export function Filters({ onChangeFilters }) {
   );
 }
 
-Filters.propTypes = {
-  onChangeFilters: PropTypes.func,
-};
