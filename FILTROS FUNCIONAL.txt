@@ -44,7 +44,7 @@ cuando se actualiza el estado en Filters utilizando onChangeFilters, se esta mod
 
 ES IMPORTANTE QUE SE LLAMEN IGUALES PORQUE SINO EN APP NO SE RECONOCE EL CAMBIO DE ESTE FILTRO DE PRECIO, NO ENTRA EN EL SET
 
-//.. PASO FINAL../ REORGANIZACION DE LA LOGICA
+//.. PASO FINAL ANTES DEL USECONTEXT../ REORGANIZACION DE LA LOGICA
 
 REORGANIZAR LA LOGICA:
 
@@ -60,4 +60,3 @@ filterProducts: los productos que son filtrados por los filtros.
 setfilters: el setFilters que lo pasamos como props al componente filters y hace una copia y actualizacion del estado filters.
 2) EXTRACCION EN APP:
 una vez que lo retorna lo extraigo en app
-  const { filterProducts, setfilters } = useFilters();
