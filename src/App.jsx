@@ -1,44 +1,16 @@
 //import Products from "./Components/Products";
 import { products as InicialProducts } from "./Mooks/products.json";
 import Products from "./Components/Products";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
-import {FiltersContext} from './context/FiltersContext'
+import {useFilters} from './Hooks/useFilters'
 
-//CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS.
-function useFilters() {
-  //defino ambos filtros como OBJETO.
-  //->categoria, -> precio ===>  filters.
-  //-> setProducts ===> manejador de; estado los filtros.
-  
-  // const [filters, setfilters] = useState({
-  //   category: "all",
-  //   minPrice: "0",
-  // });
-
-  //REEMPLAZAMOS LA DEFINICION DEL OBJETO DE LOS FILTROS POR LA CREADA EN EL CONTEXTO
-  const {filters,setfilters} = useContext(FiltersContext)
-
-
-
-  //funcion logica de los filtros.
-  // productos filtrados ===> products.
-  const filterProducts = (products) => {
-    return products.filter((product) => {
-      return (
-        product.price >= filters.minPrice &&
-        (filters.category === "all" || product.category === filters.category)
-      );
-    });
-  };
-
-  return { filterProducts, setfilters, filters };
-}
+//CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS => lo llevamos a una carpeta especifica
 
 function App() {
   //extraccion de los filtros. ({llaves} xq son varios y lo extraigo como objetos)
-  const { filterProducts, setfilters, filters } = useFilters();
+  const { filterProducts } = useFilters();
 
   //extraccion de los productos. ([corchetes] porque es una matriz de datos)
   const [products] = useState(InicialProducts);
@@ -48,9 +20,9 @@ function App() {
 
   return (
     <>
-      <Header changeFilters={setfilters} />
+      <Header/>
       <Products Products={filteredProduct} />
-      <Footer filters={filters} />
+      <Footer />
     </>
   );
 }

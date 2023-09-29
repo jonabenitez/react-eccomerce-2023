@@ -1,0 +1,14 @@
+SE DENOMINA ASI PORQUE TENEMOS 2 VERDADES DISTINTAS, 2 ESTADOS DISTINTOS DE LA MISMA COSA.
+
+EN EL COMPONENTE FILTERS.
+
+este problema se en el componente filters, cuando mostramos por pantalla el precio y la categoria, este no se extrae del ESTADO GLOBAL (del useFilters que recibe la data del context), sino que creamos un estado que toma como parametro lo que el usuario genera en la ui, si selecciona un precio minimo, es lo que muestra.
+pero el problema esta cuando yo cambio el precio minimo del estado global (useFilters), los cambios se generan en los productos, pero no en el rango de precios. porque ese estado no esta cambiando.
+
+para solucionar esto:
+
+BORRAMOS EL ESTADO QUE CREAMOS EN FILTERS:   const [minPrice, setMinprice] = useState(0);
+Y EN EL SPAN : en lugar de     <span>{minPrice} $</span> MOSTRAMOS         <span>{filters.minPrice} $</span>
+
+
+

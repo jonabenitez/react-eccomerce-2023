@@ -1,11 +1,11 @@
 import {Filters} from './Filters'
 import PropTypes from 'prop-types';
 
-function Header( {changeFilters}) {
+function Header() {
   return (
     <header>
     <div>React Shop</div>
-    <Filters onChangeFilters = {changeFilters} />
+    <Filters />
 
     </header>
 

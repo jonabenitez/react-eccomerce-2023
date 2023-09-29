@@ -16,20 +16,19 @@ si ahora vemos como tenemos la aplicacion, el componente app es el que orquesta 
  
  FUNCION: los componentes que quieran el estado de los filtros lo guardamos en un contexto y aquel que lo quiera, lo leera del contexto.
  es un almacen que guarda la logica de los filtros en una parte separada y cualquier componente lo pueda leer directamente sin necesidad que se lo pasen.
- ESTE SE ENCUENTRA TOTALMENTE SEPARADO DEL ARBOL DE COMPONENTE Y ESTOS COMPONENTES LEER ESTOS DATOS.
- 
+ ESTE SE ENCUENTRA TOTALMENTE SEPARADO DEL ARBOL DE COMPONENTE Y TODOS TIENEN ACCESO.
+
  pero como saben los componentes que ahora pueden leer de este contexto??
 
  esto se debe a COMO ESTA FORMADO EL CONTEXTO:
-
- 1. por el contexto en si mismo: FiltersContext
+ 1. por el contexto en si mismo: FiltersContext.
  2. un embolvente o proveder: filtersContextProveder (definimos todo lo que envolvemos tiene acceso al contexto)
 
  entonces, se resumen en 3 simples pasos:
 
 
-1) CREAR EL CONTEXTO:     filtersContext
-2) PROVEER EL CONTEXTO:   filtersContextProveder envolver a los componentes que quiero que lean el contexto
+1) CREAR EL CONTEXTO:     filtersContext.
+2) PROVEER EL CONTEXTO:   filtersContextProveder. envolver a los componentes que quiero que lean el contexto
 3) CONSUMIR EL CONTEXTO:  desde filters consumir este contexto
 
 
@@ -39,6 +38,7 @@ creamos el archivo Filters.jsx / importamos el create context y lo creamos vacio
 export const FitersContext = createContext()
 
 2) creacion del PROVIDER (funcion).
+ aqui se crea primero de manera estatica, los datos que necesita lo transcribimos en el provider.
 
 export function FiltersProvider({ children }) {
   <FiltersContext.Provider
@@ -79,5 +79,54 @@ reemplazamos la definicion de los Filters para consumirla directamente desde lo 
 
  NUEVA DEFINICION DEL PROVIDER
 
- export function
  
+export function FiltersProvider ({children}){
+
+// redefinimos los filtros pero ahora con estado, de forma dinamica.
+const [filters, setfilters] = useState({
+  category:'all',
+  minPrice:0
+  })
+
+  return <FiltersContext.Provider value={{filters,setfilters}}
+    >{
+      children}
+    </FiltersContext.Provider>
+}
+
+extramos en app dentro del hook este filters y el setfilters y listo."
+APP:    const {filters,setfilters} = useContext(FiltersContext)
+
+////          FIN DE LA CREACION DEL CONTEXTO                    /////
+
+/// ULTIMO PASO EVITAR EL PROP DRILLING ..//
+ahora gracias al HOOK useFilters podemos evitarlo, devemos quitarlo de app y llevarlo a un componenente aparte.
+como ya tenemos el contexto creado y toda la app va a tener acceso a la info del provider.
+
+EMPEZAMOS POR:
+1)      <Header changeFilters={setfilters} />
+no es necesario pasarlo como props, porque ya tiene acceso filters a setFilters, asi que lo borramos y reemplazamos todo lo que sea de la props:
+
+app:      <Header changeFilters={setfilters} />  ==> BORRAMOS LA PROP
+header:      function Header( {changeFilters}) {}==> BOORAMOS LA PROP
+filters:     function Filters({ onChangeFilters }){} ==> BOORAMOS LA PROPS, TRAEMOS EL setfilters de useFilters y REEMPLAZAMOS POR setFilters donde sea necesario.
+
+
+
+
+
+
+
+
+
+
+ 
+CUANDO USAR USE CONTEXT:
+
+COMO ESTADO GLOBAL PARA ESTADOS MUY PEQUENOS Y CAMBIEN CON POCA FRECUENCIA.
+. INICIO Y CIERRE DE SESION.
+
+CAMBIOS DE ESTADOS MUY GRANDES Y COMPLEJOS
+. SUSTANCE
+. REDUX
+

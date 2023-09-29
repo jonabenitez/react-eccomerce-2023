@@ -32,7 +32,7 @@ export function FiltersProvider ({children}){
 //redefinimos los filtros pero ahora con estado, de forma dinamica.
 const [filters, setfilters] = useState({
   category:'all',
-  minPrice:0
+  minPrice:100
   })
 
 
