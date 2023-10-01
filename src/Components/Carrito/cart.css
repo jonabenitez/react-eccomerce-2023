@@ -1,0 +1,85 @@
+.cart {
+  /*TODO EL MENU DEL CARRITO  */
+  background: black;
+  display: none;
+  /* el carrito no se ve por defecto */
+  padding: 32px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+}
+
+.cart img {
+  aspect-ratio: 14/9;
+  /*  tendrá una relación de aspecto de 16/9, lo que significa que, independientemente del tamaño del contenedor, su ancho será 16 unidades y su altura será 9 unidades. 
+  otros 2 valores que puede tener son:display: 
+  4/3
+  1/1
+  ; */
+  width: 100%;
+}
+
+.cart li {
+  border-bottom: 1px solid #444;
+  padding-bottom: 16px;
+}
+
+.cart footer {
+  /* cantidad y contenido del boton + */
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart footer button {
+  /* boton + */
+  padding: 8px;
+}
+
+.cart-button {
+  /* carrito de compras */
+  align-items: center;
+  background: #09f;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  padding: 4px;
+  position: absolute;
+  /* El uso de position: absolute; es común para crear diseños de capas superpuestas, como ventanas emergentes, menús desplegables o elementos que deben estar posicionados con precisión en una página. Sin embargo, ten en cuenta que los elementos posicionados de forma absoluta pueden salirse del flujo normal del documento y superponerse a otros elementos, lo que a veces puede requerir el uso de propiedades como z-index para controlar el orden de superposición.
+
+  El contenedor más cercano al que se hace referencia generalmente es un elemento padre o ancestro que tiene una propiedad position diferente de static. Los valores válidos para position son relative, absolute, fixed, o sticky. Si ninguno de los elementos padres tiene una propiedad position diferente de static, entonces el elemento de nivel superior, es decir, el <html> o <body>, se considera el contenedor de referencia.
+
+  
+   se utiliza para controlar el tipo de posicionamiento de un elemento en una página web. La declaración position: absolute; establece que el elemento se posiciona de forma absoluta con respecto a su contenedor más cercano */
+  z-index: 9999;
+  /* Esto significa que ese elemento estará en una capa superior en comparación con otros elementos que tengan un z-index menor o que no tengan un z-index definido. Cuanto mayor sea el número, más arriba estará en la pila de elementos.
+  9999 siginifica que estara por arriba de todo */
+  right: 8px;
+  top: 8px;
+  transition: all 0.3s ease;
+  width: 32px;
+}
+
+.cart-button:hover {
+  /* aumenta un 10% el tamano del boton */
+  scale: 1.1;
+}
+
+/* COMO GENERAR UN ASIDE COMO BOTON SIN USAR UN BOTON */
+.cart-button ~ input:checked ~ .cart {
+  height: 100%;
+  display: block;
+}
+/* aca con el selector hermano estamos diciendo que el icono del carrito: <label className="cart-button",
+como este hace referencia a un input check, referidos con:
+ label -> htmlfor= {cartCheckBoxId}
+ input -> id= {cartCheckBoxId} --- este tiene la propiedad hidden y check.
+
+ por lo tanto, lo que le estamos diciendo es que este label,  cuando su hermano este checkeado, su otro hermano que es el carrito completo con la img y los productos, se muestre ocupando el 100% de la altura
+
+
+ */

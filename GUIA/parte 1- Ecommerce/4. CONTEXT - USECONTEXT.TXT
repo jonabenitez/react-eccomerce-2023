@@ -99,28 +99,6 @@ APP:    const {filters,setfilters} = useContext(FiltersContext)
 
 ////          FIN DE LA CREACION DEL CONTEXTO                    /////
 
-/// ULTIMO PASO EVITAR EL PROP DRILLING ..//
-ahora gracias al HOOK useFilters podemos evitarlo, devemos quitarlo de app y llevarlo a un componenente aparte.
-como ya tenemos el contexto creado y toda la app va a tener acceso a la info del provider.
-
-EMPEZAMOS POR:
-1)      <Header changeFilters={setfilters} />
-no es necesario pasarlo como props, porque ya tiene acceso filters a setFilters, asi que lo borramos y reemplazamos todo lo que sea de la props:
-
-app:      <Header changeFilters={setfilters} />  ==> BORRAMOS LA PROP
-header:      function Header( {changeFilters}) {}==> BOORAMOS LA PROP
-filters:     function Filters({ onChangeFilters }){} ==> BOORAMOS LA PROPS, TRAEMOS EL setfilters de useFilters y REEMPLAZAMOS POR setFilters donde sea necesario.
-
-
-
-
-
-
-
-
-
-
- 
 CUANDO USAR USE CONTEXT:
 
 COMO ESTADO GLOBAL PARA ESTADOS MUY PEQUENOS Y CAMBIEN CON POCA FRECUENCIA.
@@ -129,4 +107,3 @@ COMO ESTADO GLOBAL PARA ESTADOS MUY PEQUENOS Y CAMBIEN CON POCA FRECUENCIA.
 CAMBIOS DE ESTADOS MUY GRANDES Y COMPLEJOS
 . SUSTANCE
 . REDUX
-

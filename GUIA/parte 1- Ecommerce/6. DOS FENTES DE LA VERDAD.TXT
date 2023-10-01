@@ -11,4 +11,3 @@ BORRAMOS EL ESTADO QUE CREAMOS EN FILTERS:   const [minPrice, setMinprice] = use
 Y EN EL SPAN : en lugar de     <span>{minPrice} $</span> MOSTRAMOS         <span>{filters.minPrice} $</span>
 
 
-

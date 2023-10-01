@@ -27,4 +27,3 @@ una vez que definimos los filtros que queremos usar, vamos a crear el metodo que
     });
   };
 
-

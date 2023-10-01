@@ -27,17 +27,20 @@ export const FiltersContext = createContext();
 
 
 // DEFINICION DINAMICA: con un manejador de estado, el useState.
-
+//como ahora toda mi app va a tener acceso a lo que se encuentr aca adentro, redefinimos el estado aca, para poder extraerlo directamente donde lo necesitemos filters y setfilters >> filters.jsx.
 export function FiltersProvider ({children}){
 //redefinimos los filtros pero ahora con estado, de forma dinamica.
+
+// LO QUE QUIERO PROVEER
 const [filters, setfilters] = useState({
   category:'all',
   minPrice:100
   })
-
+//
 
   return <FiltersContext.Provider value={{filters,setfilters}}
+  //DONDE LO VOY A PROVEER: lo envuelto
     >{
       children}
     </FiltersContext.Provider>
-}
+}//ahora todos tendran acceso al filters y al setFilters 

@@ -1,0 +1,6 @@
+carrito:
+- haz que se puedan anadir los productos al carrito.
+- haz que se puedan eliminar los productos del carrito.
+- haz que se puedan modificar la cantidad de productos del carrito.
+- sicroniza los cambios del carrito con la lista de productos.
+- guarda en un localSotorage el carrito para que cuando se recupere al recargar la pagina (da puntos)

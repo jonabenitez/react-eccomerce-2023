@@ -5,8 +5,9 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import {useFilters} from './Hooks/useFilters'
+import Cart from "./Components/Carrito/Cart";
 
-//CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS => lo llevamos a una carpeta especifica
+//CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS => lo llevamos a una carpeta especifica.
 
 function App() {
   //extraccion de los filtros. ({llaves} xq son varios y lo extraigo como objetos)
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
       <Header/>
+      <Cart/>
       <Products Products={filteredProduct} />
       <Footer />
     </>

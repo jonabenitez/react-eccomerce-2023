@@ -7,7 +7,7 @@ export function Filters() {
   const {filters ,setfilters } = useFilters();
   // ID UNICOS:
   const minPriceFilterID = useId(); // generador de id para el precio minimo ya fultrado en el filters de precio minimo
-  const categoryFilterID = useId(); // generador de id para el precio minimo ya fultrado en el filters de categoria
+  const categoryFilterID = useId(); // generador de id para el  ya fultrado en el filters de categoria
 
   //este estado me permite mostrar por pantalla el precio
 
@@ -26,6 +26,8 @@ export function Filters() {
     // porque entra como parametro y se genera una copia??
 
     //Inmutabilidad del estado: En muchas bibliotecas de JavaScript, como React, se promueve la inmutabilidad del estado. Esto significa que en lugar de modificar directamente el estado actual, se crea un nuevo objeto o copia del estado con las modificaciones. Al pasar el estado previo como parámetro, la función de actualización puede crear un nuevo estado basado en el estado previo sin modificarlo directamente.
+
+    //UNA VEZ CREADO EL CONTEXTO:
   };
 
   // ACTUALIZACION DE LA CATEGORIA

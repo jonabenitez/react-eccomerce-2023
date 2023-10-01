@@ -80,4 +80,3 @@ Products.propTypes = {
     })
   ).isRequired,
 };
-
