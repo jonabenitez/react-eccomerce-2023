@@ -1,8 +1,10 @@
 import propTypes from "prop-types";
 import { AddToCartIcon } from "./Icons";
-
+import {useCart } from '../Hooks/useCart'
 // SE EXTRAN LOS PRODUCTOS DE LA MATRIZ DE PRODUCTS QUE ENTRA COMO PROPS
 function Products({ Products }) {
+  const { addCart }=useCart();
+  
   return (
     <main>
       <ul>
@@ -15,7 +17,7 @@ function Products({ Products }) {
               </strong>
             </div>
             <div>
-              <button>
+              <button onClick={()=>(addCart(product))}>
                 <AddToCartIcon />
               </button>
             </div>

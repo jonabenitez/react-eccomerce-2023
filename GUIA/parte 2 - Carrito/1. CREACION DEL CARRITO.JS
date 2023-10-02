@@ -1,8 +1,8 @@
-CREACION DEL CARRITO
+// CREACION DEL CARRITO
 
-1. USAEAMOS useID para crear un ID unico, este lo vamos a compartir con el input y el label, que nos sirve para definirlos como hermanos, que luego en el css aplicaremos las propiedades para que cuando este aparezca crekeado aparezca el menu slice en la interfaz.
+// 1. USArEAMOS useID para crear un ID unico, este lo vamos a compartir con el input y el label, que nos sirve para definirlos como hermanos, que luego en el css aplicaremos las propiedades para que cuando este aparezca crekeado aparezca el menu slice en la interfaz.
 
-2. CREAMOS EL MENU SLICE: UL>LI>IMG - DIV(PRODUCTO Y PRECIO)-FOOTER (CANTIDAD Y BOTON +).
+// 2. CREAMOS EL MENU SLICE: UL>LI>IMG - DIV(PRODUCTO Y PRECIO)-FOOTER (CANTIDAD Y BOTON +).
 
 export default function Cart() {
   const cartCheckBoxId = useId();

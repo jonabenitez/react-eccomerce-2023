@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import {useFilters} from './Hooks/useFilters'
 import Cart from "./Components/Carrito/Cart";
+import { CartProvider } from "./context/CartContext";
 
 //CUSTOM HOOKS: QUE CONTIENE LA LOGICA DE LOS FILTERS => lo llevamos a una carpeta especifica.
 
@@ -21,10 +22,12 @@ function App() {
 
   return (
     <>
+    <CartProvider>
       <Header/>
       <Cart/>
       <Products Products={filteredProduct} />
       <Footer />
+      </CartProvider>
     </>
   );
 }

@@ -1,66 +1,73 @@
 CREACION DEL CONTEXTO.
 
-porque creamos un contexto:
-porque necesitamos un estado global que controle la cantidad de productos, ya que cambiara tanto el la lista de los productos como en el  aside del carrito.
+1. CREACION DEL CONTEXTO
+2. PROVEER EL CONTEXTO
+3. CONSUMIR EL CONTEXTO
 
-//1. creacion del contexto
+porque creamos un contexto:
+porque necesitamos un estado global que controle la cantidad de productos.
+ya que cambiara la cantidad tanto en la lista de los productos de la Ecommerce como en el  aside del carrito.
+CUAL ES EL ESTADO GLOBAL QUE NECESITO:
+-> el de la cantidad de productos.
+
+//1. creacion del contexto:
 export const CartContext = createContext();
 
-//2. creacion de Provider
-
-
+//2. PROVEER EL CONTEXTO: PROVIDER.
 
 export function CartProvider({ children }) {
 
-  const [Cart, setCart] = useState([]);
-// a.  creamos el estado que vamos a necesitar cart y setCart cmo un array vacio, que se va a llenar con la cantidad de productos y el clearCart, que volvera al array vacion.
+  const [Cart, setCart] = useState([])
 
-// b. creamos las funciones que permitiran: anadir:
-
+  //ANADIR:
   const addToCart = (product) => {
    const productInCartIndex = Cart.findIndex(item=> item.id === product.id)
   };
 
-COMO FUNCIONA ESTA FUNCION DE ANADIR:
-1) VERIFICAR SI ESTA EL PRODUCTO QUE VAMOS A AGREGAR EN EL CARRITO: productInCartIndex.
+COMO HACER ESTA FUNCION DE ANADIR:
 
-para esto creamos la funcion productInCartIndex con un findIndex.
+EJEMPLO DE COMO FUNCIONA:
+     cuando el usuario hace click en "agregar al carrito", ej. el producto 2.
 
-findIndex: este metodo va a encontrar el index del primer elemento de un array que cumpla ciertas condiciones en este caso son:
+1. este producto 2 va a entrar al cart (carrito) --> cart = [producto 5, producto 11, "producto 2"].
 
-condicion: que el id del item del array cart sea igual al id de la lista de productos.
+2. se activa la fucion addToCart:
+item.id = a los id del cart.
+product.id =  al id del producto agregado.
 
-que devuelve ==> si encuentra el que cumpla la condicion, devuelve el numero de ID
-             ==> sino lo encuentra, devuelve -1.
+       dentro de esta se va a verificar si existe ya en el carrito o no:
+       si el id del producto es igual alguno de los id de los items del cart.
+       si esto  se cumple --> 
 
-2) QUE HACEMOS SI ENCUENTRA UN ELEMENTO QUE CUMPLE ESTA CONDICION:
-
-
-si lo encuentra,quiere decir que el producto ya esta en el carrito, creamos un UN CLON del array Cart con (structuredClone) y a este nuevo carrito se le incrementa en 1 la propiedad quantity o cantidad, para indicar que se agrego una unidad mas del carrito.
-
-
-
-
-
-
-
-
+   2.b) SI YA ESTA EL PRODUCTO EN EL CARRITO:
+ clonacion y actualizacion:
+    if (productCartIndex >= 0) {
+      const newCart =  structuredClone(cart)
+      newCart[productCartIndex].quantity += 1;
+      setCart(newCart); // Actualizamos el estado del carrito
+    }
 
 
+    //2B.SI NO EXISTE EL PRODUCTO EN EL CARRITO:
+    else{
+      //
+      //1. se setea el cart con:
+      setCart(estadoprevio => {[
+      //2. se crea un nuevo array: copiando todos los elementos del estado previo, que va a entrar como parametro.
+        ...estadoprevio,
+      //3. se agrega un nuevo objeto que contiene:
+        {
+      // una copia del producto agregado
+          ...product,
+      // y se agrega la propidad quantity:1 al producto
+          quantity:1
+        }]
+      })
 
-
-  // funcion limpiar
-  const clearToCart = () => {
-    setCart([]);
+    }
   };
 
-  <CartContext.Provider
-    value={{
-      Cart,
-      addToCart,
-      clearToCart,
-    }}
-  >
-    {children}
-  </CartContext.Provider>;
-}
+
+  ***ESTADO PREVIO O PREVSTATE*****
+
+  ESTE ES UN VALOR PROPIO DEL USE ESTATE, POR ESTO PUEDO USARLO, ME TRAE EL ESTADO PREVIO DEL ESTADO Y ASI PODER MODIFICARLO

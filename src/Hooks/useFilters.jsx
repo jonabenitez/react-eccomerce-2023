@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import {FiltersContext,} from '../context/FiltersContext'
 
 export function useFilters() {
-
+  
     //defino ambos filtros como OBJETO.
     //->categoria, -> precio ===>  filters.
     //-> setProducts ===> manejador de; estado los filtros.
