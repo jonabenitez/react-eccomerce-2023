@@ -24,12 +24,13 @@ export function CartProvider({ children }) {
 
     //condicion A SI EXISTE EL PRODUCTO EN EL CARRITO: (3 PASOS)
     if(productCartIndex >= 0) { 
-      // como no podemos modificar el array originar, tenemos que CLONAR el array y AGREGAR las modificaciones. 
       
       //2. SI EXISTA YA UN PRODUCTO EN EL CARRITO: (3 pasos)               (1.CLONAR - 2.ANADIR - 3.SETEAR y RETORNAR)      
-
+      
       //1. clonar:
+      // como no podemos modificar el array originar, tenemos que CLONAR el array y AGREGAR las modificaciones. 
       const newCart = structuredClone (cart);
+
       //2. anadir: 
       newCart[productCartIndex].quantity += 1
       //el producto que este en la posicion del productCartIndex, aumentara en 1.
@@ -62,11 +63,42 @@ export function CartProvider({ children }) {
     setCart([]);
   };
 
+
+// IMPORTARTE:  
+//product.id = a los productos de la lista filtrada.
+//item.id =  representa a cada producto del carrito en su iteracion.
+
+
+
+  // QUITAR ELEMENTO DEL CARRITO
+const removeFromCart = product => {
+  setCart (estadoprevio =>  estadoprevio.filter((item)=>item.id != product.id))
+}
+// filter: itera los elementos de un array y devuelve un nuevo array con todos los elementos exepto el seleccionado, que es el que coincide el id. busca el que coincide y no lo trae.
+
+  //3) ULTIMO PASO PARA MOSTRARLO VISUALMENTE EN LA INTEFAZ cambiar logo del carrito:
+
+
+const checkProductInCart = product => {
+ return cart.some((item)=>(product.id === item.id))
+}
+// BUSCAR EL UN ELEMENTO QUE COINCIDA Y DEVUELVE:
+// true si lo encuentra.
+// false sino lo encuentra.
+
+// y la vamos a extraer en la funcion de Products en Products.
+
+
   return <CartContext.Provider value={{
     cart,
     addCart,
-    clearCart
+    clearCart,
+    checkProductInCart,
+    removeFromCart
+
   }}>
+
+  
 
 {children}
   </CartContext.Provider>;

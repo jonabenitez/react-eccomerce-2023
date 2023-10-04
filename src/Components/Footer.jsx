@@ -3,9 +3,10 @@ import { useFilters } from "../Hooks/useFilters";
 import "./footer.css";
 import {useCart} from '../Hooks/useCart'
 function Footer() {
+  //extrancciones del contexto.
   const {cart} = useCart()
+  const {filters} = useFilters()
 
- const {filters} = useFilters()
   return (
     <footer className="footer">
       Filtros:
