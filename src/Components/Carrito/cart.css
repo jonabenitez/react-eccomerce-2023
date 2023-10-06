@@ -80,6 +80,12 @@ como este hace referencia a un input check, referidos con:
  input -> id= {cartCheckBoxId} --- este tiene la propiedad hidden y check.
 
  por lo tanto, lo que le estamos diciendo es que este label,  cuando su hermano este checkeado, su otro hermano que es el carrito completo con la img y los productos, se muestre ocupando el 100% de la altura
-
-
  */
+
+ /* Products - Buton de agregar al carrito con condicional en la Ecommerce */
+.inCart{
+  background-color: red;
+}
+.outCart{
+background-color:#09f;
+}

@@ -1,0 +1,48 @@
+MOSTRAR LOS PRODUCTOS EN EL CARRITO
+
+
+// para entender como vamos.
+
+cart: es el arreglo que almaceno los productos del carrito --- esta guardado en el --> contexto
+
+el cart.map() va a recorrer  cada uno de estos productos.
+
+y para cada producto:
+1. se van a introducir cada prodcuto en un ProductItem, para representar ese producto en la lista.
+2. se le asignara una key es decir
+
+
+
+dentro del carrito, debemos traer del contexto:
+1. la funcion para limpiar el carrito.
+2. lo que queremos mostrar: el carrito en si mismo.
+
+EN EL CART.
+
+1) PARA LA FUNCION LIMPIAR EL CARRITO:
+  extraemos lo que queremos del contexto.
+  <button onClick={()=>clearCart()}>
+
+al boton  de limpiar, agregamos la funcion clearCart que creamos en el contexto.
+ 
+2) PARA MOSTRAR LOS PRODUCTOS EN EL CARRITO --> ITERAR
+
+  1. creamos ProductItem : para mejor orden separamos todo lo que vamos a iterar, es decir, lo que esta dentro del li, las propiedades del producto.
+
+  2. le agregamos como parametros lo que necesitamos que se muestre en el carrito, que creo q viene de los contextos, de CartContext
+
+  cart es un arreglo que almacena los productos en el carrito de compras.
+
+cart.map((product) => ...) itera sobre cada elemento (producto) en el arreglo cart.
+
+Para cada producto en el carrito, se realiza lo siguiente:
+
+Se utiliza el componente ProductItem para representar el producto en la lista del carrito.
+
+key={product.id}: Asigna una clave única a cada elemento de la lista. Esto es importante en React para ayudar a identificar de manera eficiente los elementos que han cambiado al renderizar la lista.
+
+addCart={() => addCart(product)}: Pasa una función anónima como prop llamada addCart al componente ProductItem. Esta función anónima llama a la función addCart con el producto como argumento. En esencia, esto permite que el componente ProductItem tenga una forma de agregar ese producto específico al carrito.
+
+{...product}: Propaga todas las propiedades del objeto product como props individuales al componente ProductItem. Esto permite que el componente ProductItem acceda a las propiedades del producto, como thumbnail, price, title, etc., para mostrar la información del producto.
+
+En resumen, este fragmento de código mapea cada producto en el carrito (cart) y renderiza el componente ProductItem para cada uno, pasando las propiedades del producto y una función para agregar ese producto al carrito. Esto crea una lista de productos en el carrito que puedes ver en la interfaz de usuario

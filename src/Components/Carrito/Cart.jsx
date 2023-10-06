@@ -1,9 +1,33 @@
+/* eslint-disable react/prop-types */
+import "./cart.css";
+
 import { useId } from "react";
-import   './cart.css'
-import { CartIcon, ClearCartIcon, RemoveFromCartIcon } from "../Icons";
+import { CartIcon, ClearCartIcon } from "../Icons";
+import { useCart } from "../../Hooks/useCart";
+
+//Producto a mostrar en la interfaz
+function ProductItem({ thumbnail, price, title, quantity, addCart }) {
+  return (
+    <>
+      <li>
+        <img src={thumbnail} alt={title} />
+        <div>
+          <strong>{title}</strong> - {price}
+        </div>
+        <footer>
+          <small>Cantidad:{quantity}</small>
+          <button onClick={addCart}>+</button>
+        </footer>
+      </li>
+    </>
+  );
+}
 
 export default function Cart() {
   const cartCheckBoxId = useId();
+  const { cart, clearCart, addCart } = useCart();
+  console.log(cart)
+
 
   return (
     <>
@@ -17,20 +41,18 @@ export default function Cart() {
       {/* muestra del menu carrito */}
       <aside className="cart">
         <ul>
-          <li>
-            <img
-              src="https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-              alt="Iphone"
+          {cart.map((elproducto) => (
+            <ProductItem
+              key={elproducto.id}
+              addCart={() => addCart(elproducto)}
+              {...elproducto}
             />
-            <div>
-              <strong>Iphone</strong> - $1500
-            </div>
-            <footer>
-              <small>Cantidad:1</small>
-              <button>+</button>
-            </footer>
-          </li>
+          ))}
         </ul>
+
+        <button onClick={() => clearCart()}>
+          <ClearCartIcon />
+        </button>
       </aside>
     </>
   );
