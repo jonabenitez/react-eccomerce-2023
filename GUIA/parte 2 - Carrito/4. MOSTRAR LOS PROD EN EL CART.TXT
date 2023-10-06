@@ -46,3 +46,7 @@ addCart={() => addCart(product)}: Pasa una función anónima como prop llamada a
 {...product}: Propaga todas las propiedades del objeto product como props individuales al componente ProductItem. Esto permite que el componente ProductItem acceda a las propiedades del producto, como thumbnail, price, title, etc., para mostrar la información del producto.
 
 En resumen, este fragmento de código mapea cada producto en el carrito (cart) y renderiza el componente ProductItem para cada uno, pasando las propiedades del producto y una función para agregar ese producto al carrito. Esto crea una lista de productos en el carrito que puedes ver en la interfaz de usuario
+
+
+** importante del porque se envuelve en una funcion anonima++
+Cuando se utiliza la sintaxis addCart={() => addCart(product)}, lo que está sucediendo es que se crea una nueva función anónima que, cuando se ejecute, llamará a addCart(product) con el producto específico como argumento. Esta técnica se utiliza comúnmente en React para pasar funciones con argumentos personalizados a componentes secundarios.

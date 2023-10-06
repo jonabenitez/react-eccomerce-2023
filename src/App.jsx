@@ -3,7 +3,6 @@ import { products as InicialProducts } from "./Mooks/products.json";
 import Products from "./Components/Products";
 import { useState } from "react";
 import Header from "./Components/Header";
-import Footer from "./Components/Footer";
 import {useFilters} from './Hooks/useFilters'
 import Cart from "./Components/Carrito/Cart";
 import { CartProvider } from "./context/CartContext";
@@ -26,7 +25,6 @@ function App() {
       <Header/>
       <Cart/>
       <Products Products={filteredProduct} />
-      <Footer />
       </CartProvider>
     </>
   );
